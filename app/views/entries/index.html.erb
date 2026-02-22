@@ -1,0 +1,46 @@
+<h1>All Entries</h1>
+
+<ul>
+  <% for entry in @entries %>
+    <li>
+      <strong><%= entry.title %></strong> - <%= entry.place.name %>
+      <p><%= entry.occurred_on %>: <%= entry.description %></p>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+<h2>New Entry</h2>
+
+<form action="/entries" method="post">
+  <p>
+    <label for="place_id">Place</label><br>
+    <select id="place_id" name="entry[place_id]">
+      <% for place in @places %>
+        <option value="<%= place.id %>"><%= place.name %></option>
+      <% end %>
+    </select>
+  </p>
+
+  <p>
+    <label for="title">Title</label><br>
+    <input type="text" id="title" name="entry[title]">
+  </p>
+
+  <p>
+    <label for="occurred_on">Date I travelled there</label><br>
+    <input type="date" id="occurred_on" name="entry[occurred_on]">
+  </p>
+
+  <p>
+    <label for="description">Who I travelled with</label><br>
+    <textarea id="description" name="entry[description]"></textarea>
+  </p>
+
+  <button>Create Entry</button>
+</form>
+
+<p>
+  <a href="/places">Back to Places List</a>
+</p>
